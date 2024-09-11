@@ -13,7 +13,7 @@ export default function Profile() {
       console.log(result)
       if(result!=null){
       console.log("result2",result)
-      toast.success("Profile updated successfully");
+      toast.success("Profile deleted successfully");
         setIsAuth(false);
         setUser(null);
       }
@@ -22,7 +22,6 @@ export default function Profile() {
     {
       console.error(error);
       toast.error("An error occurred while delete the user");
-
     }
 
 
