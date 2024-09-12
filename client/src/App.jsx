@@ -46,10 +46,13 @@ function App() {
         <Route path="store" element={<Store />} />
         <Route path="store/:id" element={<ProductPage />} />
         <Route path="order" element={<OrderPage />} />
+
         {/* Private Routes */}
         <Route element={isAuth ? <Outlet /> : <Navigate to={"/login"} />}>
           <Route path="profile" element={<Profile />} />
           <Route path="myOrders" element={<MyOrders />} />
+          {/* <Route path="myOrders" element={<OrderPage />} /> */}
+
         </Route>
       </Route>
     )

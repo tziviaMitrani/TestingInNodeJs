@@ -13,17 +13,24 @@ function GlobalProvider({ children }) {
   // Auth Actions
 
   async function authUser() {
-    try {
-      const { data } = await axios.get("http://localhost:3000/api/users/auth", {
-        withCredentials: true,
-      });
-      if (data.success) {
-        setIsAuth(true);
-        setUser(data.user);
+      try {
+        const { data } = await axios.get("http://localhost:3000/api/users/auth", {
+          withCredentials: true,
+        });
+        if (data.success) {
+          setIsAuth(true);
+          setUser(data.user);
+        }
+      } catch (error) {
+        return error;
       }
-    } catch (error) {
-      return error;
-    }
+  }
+  function openProfileModal() {
+    profileModal.showModal();
+  }
+
+  function closeProfileModal(){
+   profileModal.close()
   }
 
   async function logOut() {
@@ -109,6 +116,8 @@ function GlobalProvider({ children }) {
     user,
     logOut,
     setUser,
+    openProfileModal,
+    closeProfileModal
   };
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

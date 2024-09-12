@@ -5,7 +5,7 @@ import { authRequest } from "../../actions";
 import axios from "axios";
 export default function ProfileForm() {
   const [error, setError] = useState("");
-  const { user, setUser, setIsAut } = useContext(GlobalContext);
+  const { closeProfileModal,user, setUser, setIsAut } = useContext(GlobalContext);
 
   const initialValues = {
     user_name: "",
@@ -19,7 +19,7 @@ export default function ProfileForm() {
     setValues({ ...values, [name]: value });
   }
   const [values, setValues] = useState(initialValues);
-  console.log("user  ", user)
+  // console.log("user  ", user)
   // setIsAuth(true)
 
 
@@ -32,23 +32,23 @@ export default function ProfileForm() {
       toast.error("Passwords do not match");
       return;
     }
-    const updateUser={
+    const updateUser = {
       ...user,
       user_name: values.user_name,
       user_email: values.user_email,
       user_password: values.user_password
     }
-    console.log("updateUser",updateUser)
+    console.log("updateUser", updateUser)
     try {
       // const { result } = await axios.put(url, updateUser);
-     const result=await axios.put(url, updateUser);
-// console.log("res.statuse",res.statuse)
+      const result = await axios.put(url, updateUser);
+      // console.log("res.statuse",res.statuse)
 
-      console.log("result",result.status)
+      console.log("result", result.status)
       // if (result.success === true) {
-        setUser(updateUser)
-        toast.success("Profile updated successfully");
-        profileModal.close();
+      setUser(updateUser)
+      toast.success("Profile updated successfully");
+      profileModal.close();
       // }
     } catch (error) {
       console.error(error);
@@ -60,6 +60,7 @@ export default function ProfileForm() {
     <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
       <h1 className="text-center text-3xl font-semibold mb-5">Edit Profile</h1>
       <input
+        data-testid="inputUpdateUser"
         type="text"
         id="user_name"
         name="user_name"
@@ -68,6 +69,7 @@ export default function ProfileForm() {
         onChange={handleChange}
       />
       <input
+        data-testid="inputUpdateUser"
         type="email"
         id="user_email"
         name="user_email"
@@ -76,6 +78,7 @@ export default function ProfileForm() {
         onChange={handleChange}
       />
       <input
+        data-testid="inputUpdateUser"
         type="text"
         id="user_password"
         name="user_password"
@@ -88,6 +91,7 @@ export default function ProfileForm() {
         onChange={handleChange}
       />
       <input
+        data-testid="inputUpdateUser"
         type="text"
         id="confirm_password"
         name="confirm_password"
@@ -102,7 +106,7 @@ export default function ProfileForm() {
           EDIT
         </button>
         <button
-          onClick={() => profileModal.close()}
+          onClick={closeProfileModal}
           type="button"
           className="btn btn-outline btn-error"
           aria-label="submit"

@@ -23,6 +23,9 @@ exports.getUser = function (id) {
 exports.deleteUser = function (id) {
   return UserModel.findByIdAndDelete(id);
 };
+// exports.deleteUser = function (userName) {
+//   return UserModel.findOneAndDelete(userName);
+// };
 
 exports.updateUser = function (id,body) {
   return UserModel.findByIdAndUpdate(id,body);

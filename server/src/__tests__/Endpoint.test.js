@@ -30,7 +30,6 @@ describe("Endpoints Test Server", () => {
       await collections[key].deleteMany({});
     }
   });
-
   test("test GetUsers Route API should return All Users", async () => {
     const newUser = {
       user_name: "bob",

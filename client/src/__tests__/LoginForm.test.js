@@ -5,6 +5,7 @@ import axios from "axios";
 import GlobalProvider from "../context/GlobalContext";
 
 const user = {
+  ...user,
   user_name: "JohnDoe",
   user_email: "JohnDoe@gmail.com",
   user_password: "John123456",

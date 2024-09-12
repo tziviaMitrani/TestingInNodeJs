@@ -60,6 +60,23 @@ exports.deleteById = async function (request, response) {
 
 };
 
+// exports.deleteById = async function (request, response) {
+//   try {
+//     const name = request.params;
+//     const result = await deleteUser(name);
+//     console.log("delete controller", result)
+//     // response.status(200).send({ status: 200 })
+//     if(!result) throw new Error("delete is not succses");
+//       response.status(200)
+//       response.json({ success: true })
+//   } catch (error) {
+//     console.log(error)
+//     response.status(500).send(error);
+//   }
+
+// };
+
+
 
 exports.authUser = async function (request, response) {
   try {
