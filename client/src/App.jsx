@@ -21,7 +21,7 @@ import Profile from "./components/pages/privateRoutes/Profile";
 import ProfileModal from "./components/modal/ProfileModal";
 import OrderPage from "./components/pages/privateRoutes/OrderPage";
 import MyOrders from "./components/pages/privateRoutes/MyOrders";
-
+import CurrentOrder from "./components/pages/privateRoutes/CurrentOrder";
 function Root() {
   return (
     <div style={{minHeight:"100vh"}} className="bg-[#111827]">
@@ -45,8 +45,9 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="store" element={<Store />} />
         <Route path="store/:id" element={<ProductPage />} />
-        <Route path="order" element={<OrderPage />} />
+        {/* <Route path="order" element={<CurrentOrder />} /> */}
 
+        <Route path="order" element={<OrderPage />} />
         {/* Private Routes */}
         <Route element={isAuth ? <Outlet /> : <Navigate to={"/login"} />}>
           <Route path="profile" element={<Profile />} />

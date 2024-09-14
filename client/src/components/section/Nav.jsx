@@ -84,6 +84,14 @@ export default function Nav() {
             </li>
             <li>
               <NavLink
+                to="/order"
+                className={({ isActive }) => checkIsActive(isActive)}
+              >
+               Order
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/contact"
                 className={({ isActive }) => checkIsActive(isActive)}
               >

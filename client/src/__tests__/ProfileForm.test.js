@@ -13,27 +13,27 @@ import ProfileModal from "../components/modal/ProfileModal";
 //     user_password: "12345678",
 // };
 
-const mockCloseModal=jest.fn();
-const value={
-    user : {
-        user_email: "Dan@gmail.com",
+const mockCloseModal = jest.fn();
+const value = {
+    user: {
         user_name: "johndoe",
+        user_email: "Dan@gmail.com",
         user_password: "12345678",
         confirm_password: "12345678",
         _id: "66e14357f479e403672518ce",
     },
-    closeProfileModal:mockCloseModal
+    closeProfileModal: mockCloseModal
 }
- 
+
 
 
 const url = `http://localhost:3000/api/users/update/${value.user._id}`;
 jest.mock("axios");
 // describe("Test Profile Form", () => {
 describe("Profile Page Tests When user unAuthenticate", () => {
-    beforeEach(() => {
-        axios.get.mockRejectedValue({ success: false });
-    })
+    // beforeEach(() => {
+    //     axios.get.mockRejectedValue({ success: false });
+    // })
     test("test Profile page When form submitted", async () => {
         axios.put.mockResolvedValue({ success: true });
         render(
@@ -48,7 +48,7 @@ describe("Profile Page Tests When user unAuthenticate", () => {
         // const elements = screen.getAllByTestId("inputUpdateUser");
         const elements = screen.getAllByRole("textbox");
         for (let element of elements) {
-            await userEvent.type(element,"tzivia@gmail.com");
+            await userEvent.type(element, "tzivia@gmail.com");
             // console.log(value.user[element.id]);
             expect(element.value).toBe("tzivia@gmail.com");
         }
@@ -58,14 +58,16 @@ describe("Profile Page Tests When user unAuthenticate", () => {
         //     console.log(value.user[element.id]);
         //     expect(element.value).toBe(value.user[element.id]);
         // }
-    
+
         await userEvent.click(btn);
         // delete value.user.confirm_password;
         // delete value.user._id;
         // expect(axios.put).toHaveBeenCalled;
-        expect(axios.put).toHaveBeenCalledWith("http://localhost:3000/api/users/update/66e14357f479e403672518ce", {   user_email: "tzivia@gmail.com",
+        expect(axios.put).toHaveBeenCalledWith("http://localhost:3000/api/users/update/66e14357f479e403672518ce", {
             user_name: "tzivia@gmail.com",
-            user_password: "tzivia@gmail.com"});
+            user_email: "tzivia@gmail.com",
+            user_password: "tzivia@gmail.com"
+        });
     });
     // test("test profile page When form submitted rejected and error show on document", async () => {
     //   const axiosError = {

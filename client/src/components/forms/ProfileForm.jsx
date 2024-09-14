@@ -32,19 +32,21 @@ export default function ProfileForm() {
       toast.error("Passwords do not match");
       return;
     }
+     delete values.confirm_password;
     const updateUser = {
       ...user,
       user_name: values.user_name,
       user_email: values.user_email,
       user_password: values.user_password
     }
+    
     console.log("updateUser", updateUser)
     try {
       // const { result } = await axios.put(url, updateUser);
-      const result = await axios.put(url, updateUser);
+      const result = await axios.put(url, values);
       // console.log("res.statuse",res.statuse)
 
-      console.log("result", result.status)
+      console.log("result", result.success)
       // if (result.success === true) {
       setUser(updateUser)
       toast.success("Profile updated successfully");

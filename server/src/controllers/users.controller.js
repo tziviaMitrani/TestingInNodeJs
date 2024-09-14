@@ -35,9 +35,8 @@ exports.updateById = async function (request, response) {
     console.log("dfghjk", id, request.body)
     const user = await updateUser(id, request.body);
     console.log("user controller", user)
-    response.status(200).send({ status: 200 })
+    response.status(200).send({ success: true })
     // response.status(200)
-
   } catch (error) {
     response.status(500).send(error);
   }
@@ -51,8 +50,10 @@ exports.deleteById = async function (request, response) {
     console.log("delete controller", result)
     // response.status(200).send({ status: 200 })
     if(!result) throw new Error("delete is not succses");
-      response.status(200)
-      response.json({ success: true })
+    response.status(200)
+    response.json({ success: true })
+    // response.send({ success: true })
+
   } catch (error) {
     console.log(error)
     response.status(500).send(error);
@@ -60,21 +61,6 @@ exports.deleteById = async function (request, response) {
 
 };
 
-// exports.deleteById = async function (request, response) {
-//   try {
-//     const name = request.params;
-//     const result = await deleteUser(name);
-//     console.log("delete controller", result)
-//     // response.status(200).send({ status: 200 })
-//     if(!result) throw new Error("delete is not succses");
-//       response.status(200)
-//       response.json({ success: true })
-//   } catch (error) {
-//     console.log(error)
-//     response.status(500).send(error);
-//   }
-
-// };
 
 
 

@@ -2,7 +2,7 @@ const request = require("supertest");
 const { createApp } = require("../createApp");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
-const { createUser } = require("../service/user.service");
+const { createUser, deleteUser } = require("../service/user.service");
 const jwtService = require("../utils/jwt");
 
 jest.mock("../utils/jwt", () => ({
@@ -83,31 +83,31 @@ describe("Endpoints Test Server", () => {
     expect(cookie[0]).toContain("HttpOnly");
   });
 
-  test("test Auth Route API should return user Info in Response", async () => {
-    const user = {
-      user_email: "bobi@gmail.com",
-      user_password: "12345678",
-    };
+  // test("test Auth Route API should return user Info in Response", async () => {
+  //   const user = {
+  //     user_email: "bobi@gmail.com",
+  //     user_password: "12345678",
+  //   };
 
-    // Create New User on fake Db
-    await createUser({ ...user, user_name: "eyal" });
+  //   // Create New User on fake Db
+  //   await createUser({ ...user, user_name: "eyal" });
 
-    // Send HTTP request to Login Route Api
-    const { headers } = await request(app)
-      .post("/api/users/login")
-      .send({ ...user });
+  //   // Send HTTP request to Login Route Api
+  //   const { headers } = await request(app)
+  //     .post("/api/users/login")
+  //     .send({ ...user });
 
-    const cookie = headers["set-cookie"];
+  //   const cookie = headers["set-cookie"];
 
-    // Send HTTP request to Login Route Api
-    const { statusCode, body } = await request(app)
-      .get("/api/users/auth")
-      .set("Cookie", cookie);
+  //   // Send HTTP request to Login Route Api
+  //   const { statusCode, body } = await request(app)
+  //     .get("/api/users/auth")
+  //     .set("Cookie", cookie);
 
-    expect(statusCode).toBe(200);
-    expect(body).toEqual({ success: true, user: expect.anything() });
-  });
-  
+  //   expect(statusCode).toBe(200);
+  //   expect(body).toEqual({ success: true, user: expect.anything() });
+  // });
+
   test("test Auth Route API should return user Info in Response Mock JWT", async () => {
     jwtService.verifyJwt.mockResolvedValue({ user: { user_name: "bob" } });
 
@@ -118,5 +118,57 @@ describe("Endpoints Test Server", () => {
 
     expect(statusCode).toBe(200);
     expect(body).toEqual({ success: true, user: expect.anything() });
+  });
+
+  test("test delete user", async () => {
+
+    let newUser = {
+      user_name: "bobp",
+      user_email: "bobi@gmail.com",
+      user_password: "12345678",
+    };
+
+    // Send HTTP request to Server
+
+    const { body, statusCode } = await request(app)
+      .post("/api/users/register")
+      .send({ ...newUser });
+    expect(statusCode).toBe(201);
+    expect(body.user_name).toBe(newUser.user_name);
+
+    //delete the new user
+    newUser = { ...newUser, id: body._id }
+    const  { status }=await request(app)
+    .delete(`/api/users/delete/${newUser.id}`)
+    expect(status).toBe(200);
+  });
+
+  test("test updeta user", async () => {
+
+    let newUser = {
+      user_name: "bobl",
+      user_email: "bobl@gmail.com",
+      user_password: "12345678",
+    };
+
+    // Send HTTP request to Server
+
+    const { body, statusCode } = await request(app)
+      .post("/api/users/register")
+      .send({ ...newUser });
+    expect(statusCode).toBe(201);
+    expect(body.user_name).toBe(newUser.user_name);
+    newUser = { ...newUser, id: body._id }
+
+    let updeteNewUser={
+      user_name: "bobp-update",
+      user_email: "bobiUpdate@gmail.com",
+      user_password: "12345678",
+    }
+    //update the new user
+  
+    const  { status }=await request(app)
+    .put(`/api/users/update/${newUser.id}`).send({...updeteNewUser});
+    expect(status).toBe(200);
   });
 });

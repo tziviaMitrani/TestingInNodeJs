@@ -7,3 +7,5 @@ export default function About() {
     <div className='text-white text-center'></div>
   )
 }
+
+
