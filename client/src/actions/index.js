@@ -3,6 +3,25 @@ import axios from "axios";
 const url = "https://dummyjson.com/products?limit=15";
 const authServer = "http://localhost:3000/api/users/";
 
+export async function getUserOrders(user_id) {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/users/orders/${user_id}`);
+      return data;
+    } catch (error) {
+      return { message: error.response.data.message, success: false };
+    }
+  }
+
+export async function getProductsById(id) {
+  try {
+    const { data } = await axios.get(`https://dummyjson.com/products/${id}`);
+
+    return data;
+  } catch (error) {
+    return { success: false, error };
+  }
+}
+
 export async function getProducts() {
   try {
     const { data } = await axios.get(url);

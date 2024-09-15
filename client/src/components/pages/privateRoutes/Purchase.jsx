@@ -1,2 +1,16 @@
+import React from 'react'
 
+export default function Purchase() {
+function toPay(){
+  // console.log("?")
+  window.open(`https://www.paypal.com/checkoutnow?atomic-event-state=eyJkb21haW4iOiJzZGtfcGF5cGFsX3Y1IiwiZXZlbnRzIjpbXSwiaW50ZW50IjoiY2xpY2tfcGF5bWVudF9idXR0b24iLCJpbnRlbnRUeXBlIjoiY2xpY2siLCJpbnRlcmFjdGlvblN0YXJ0VGltZSI6MTA4OTcuNjAwMDAwMDIzODQyLCJ0aW1lU3RhbXAiOjEwODk4LCJ0aW1lT3JpZ2luIjoxNzI2NDA1NzUxMDgzLjEsInRhc2siOiJzZWxlY3Rfb25lX3RpbWVfY2hlY2tvdXQiLCJmbG93Ijoib25lLXRpbWUtY2hlY2tvdXQiLCJ1aVN0YXRlIjoid2FpdGluZyIsInBhdGgiOiIvc21hcnQvYnV0dG9ucyIsInZpZXdOYW1lIjoicGF5cGFsLXNkayJ9&sessionID=uid_86962828b0_mtm6mdk6mte&buttonSessionID=uid_1064404aaa_mtm6mdk6mte&stickinessID=uid_1ab473bda5_mtk6ndy6ndu&smokeHash=&sign_out_user=false&fundingSource=paypal&buyerCountry=IL&locale.x=he_IL&commit=true&client-metadata-id=uid_86962828b0_mtm6mdk6mte&standaloneFundingSource=paypal&branded=true&token=93U56974G32122743&clientID=AXI9ufE0S2cbFXEi71kHRu9MaQbN01UYPuQidJxjE_t00Yk6NdSr0joXht4Z3NNvw6pjZSCqG-p99FZS&env=production&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWwuY29tL3Nkay9qcz9jbGllbnQtaWQ9QVhJOXVmRTBTMmNiRlhFaTcxa0hSdTlNYVFiTjAxVVlQdVFpZEp4akVfdDAwWWs2TmRTcjBqb1hodDRaM05Odnc2cGpaU0NxRy1wOTlGWlMmbWVyY2hhbnQtaWQ9R1paWDNBN1BIRlRSTCZjb21wb25lbnRzPWJ1dHRvbnMsZnVuZGluZy1lbGlnaWJpbGl0eSZjdXJyZW5jeT1JTFMmbG9jYWxlPWhlX0lMJmRpc2FibGUtZnVuZGluZz12ZW5tbyxwYXlsYXRlciIsImF0dHJzIjp7ImRhdGEtY3NwLW5vbmNlIjoicTM4ZmVXL2t4NkpCZ0dmVExwK0lCUmpQN2ZLTDUvSEZ6L2pLWkw2VEREUHBncE10IiwiZGF0YS1zZGstaW50ZWdyYXRpb24tc291cmNlIjoicmVhY3QtcGF5cGFsLWpzIiwiZGF0YS11aWQiOiJ1aWRfdHh0bGV3ZW9iemx2anRraWhuYW9zcW15ZHBvd3pmIn19&country.x=IL&xcomponent=1&version=5.0.458`)
+}
+  return (
+    <div className='text-white text-center'>
+      <button aria-label='paypalBtn' onClick={toPay}>
+         pay with paypal
+      </button>
+    </div>
+  )
+}
 

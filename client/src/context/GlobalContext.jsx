@@ -25,6 +25,9 @@ function GlobalProvider({ children }) {
         return error;
       }
   }
+
+
+
   function openProfileModal() {
     profileModal.showModal();
   }

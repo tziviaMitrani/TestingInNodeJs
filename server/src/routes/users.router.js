@@ -13,6 +13,8 @@ const {
   authUser,
   logOut
 } = require("../controllers/users.controller.js") ;
+const {  getOrdersByUserId,
+  addOrder}=require("../controllers/orders.controller.js")
 const validateResource = require("../middleware/validateResource.js") ;
 const {
   createUserSchema,
@@ -23,6 +25,12 @@ const {
 const { createSessionSchema } = require("../schema/auth.schema.js") ;
 
 const router = Router();
+//orders
+
+router.post("/orders/addOrder", addOrder);
+
+router.get("/orders/:userId", getOrdersByUserId);
+
 
 // /api/users
 

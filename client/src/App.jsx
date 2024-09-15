@@ -21,10 +21,10 @@ import Profile from "./components/pages/privateRoutes/Profile";
 import ProfileModal from "./components/modal/ProfileModal";
 import OrderPage from "./components/pages/privateRoutes/OrderPage";
 import MyOrders from "./components/pages/privateRoutes/MyOrders";
-import CurrentOrder from "./components/pages/privateRoutes/CurrentOrder";
+import Purchase from "./components/pages/privateRoutes/Purchase";
 function Root() {
   return (
-    <div style={{minHeight:"100vh"}} className="bg-[#111827]">
+    <div style={{ minHeight: "100vh" }} className="bg-[#111827]">
       <Nav />
       <Outlet />
       <CartModal />
@@ -45,14 +45,13 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="store" element={<Store />} />
         <Route path="store/:id" element={<ProductPage />} />
-        {/* <Route path="order" element={<CurrentOrder />} /> */}
-
         <Route path="order" element={<OrderPage />} />
+        <Route path="pay" element={<Purchase />} />
+
         {/* Private Routes */}
         <Route element={isAuth ? <Outlet /> : <Navigate to={"/login"} />}>
           <Route path="profile" element={<Profile />} />
           <Route path="myOrders" element={<MyOrders />} />
-          {/* <Route path="myOrders" element={<OrderPage />} /> */}
 
         </Route>
       </Route>

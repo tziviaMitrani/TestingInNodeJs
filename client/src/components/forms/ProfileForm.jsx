@@ -19,9 +19,6 @@ export default function ProfileForm() {
     setValues({ ...values, [name]: value });
   }
   const [values, setValues] = useState(initialValues);
-  // console.log("user  ", user)
-  // setIsAuth(true)
-
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,13 +44,14 @@ export default function ProfileForm() {
       // console.log("res.statuse",res.statuse)
 
       console.log("result", result.success)
-      // if (result.success === true) {
-      setUser(updateUser)
-      toast.success("Profile updated successfully");
+      if (result.success === true) {
+        setUser(updateUser)
+        toast.success("Profile updated successfully");
+      }
       profileModal.close();
       // }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       toast.error("An error occurred while updating the profile");
     }
   }
@@ -104,14 +102,14 @@ export default function ProfileForm() {
       />
 
       <div className="mt-5 flex justify-center items-center gap-5">
-        <button type="submit" className="btn btn-outline btn-primary">
+        <button type="submit" aria-label="editBtn" className="btn btn-outline btn-primary">
           EDIT
         </button>
         <button
+          data-testid="cancelBtn"
+          className="btn btn-outline btn-error"
           onClick={closeProfileModal}
           type="button"
-          className="btn btn-outline btn-error"
-          aria-label="submit"
         >
           CANCEL
         </button>
